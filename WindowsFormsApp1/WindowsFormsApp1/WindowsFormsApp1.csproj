@@ -1,0 +1,851 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8D5EB875-A563-4D77-B0EC-DB5D72C61896}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsFormsApp1</RootNamespace>
+    <AssemblyName>WindowsFormsApp1</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.19.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.19.4\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.2.6\lib\net46\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.2.6\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.29\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.29\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.29\lib\net452\ZstdNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chinese\庫存\InventoryManagementSystemPopUpFormCNN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\庫存\InventoryManagementSystemPopUpFormCNN.Designer.cs">
+      <DependentUpon>InventoryManagementSystemPopUpFormCNN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\庫存\InventoryManagementSystemReceiptCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\庫存\InventoryManagementSystemReceiptCN.Designer.cs">
+      <DependentUpon>InventoryManagementSystemReceiptCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\送貨\frmHistoryCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\送貨\frmHistoryCN.Designer.cs">
+      <DependentUpon>frmHistoryCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\送貨\frmMyTaskCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\送貨\frmMyTaskCN.Designer.cs">
+      <DependentUpon>frmMyTaskCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\送貨\frmOrderDetailCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\送貨\frmOrderDetailCN.Designer.cs">
+      <DependentUpon>frmOrderDetailCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\送貨\FrmSchedulerCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\送貨\FrmSchedulerCN.Designer.cs">
+      <DependentUpon>FrmSchedulerCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\登錄\admin2CN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\登錄\admin2CN.Designer.cs">
+      <DependentUpon>admin2CN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\登錄\Form2CN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\登錄\Form2CN.Designer.cs">
+      <DependentUpon>Form2CN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\登錄\users_listCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\登錄\users_listCN.Designer.cs">
+      <DependentUpon>users_listCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\庫存\InventoryManagementSystemCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\庫存\InventoryManagementSystemCN.Designer.cs">
+      <DependentUpon>InventoryManagementSystemCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\送貨\myTaskUserControlCN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="chinese\送貨\myTaskUserControlCN.Designer.cs">
+      <DependentUpon>myTaskUserControlCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Add CustomerCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Add CustomerCN.Designer.cs">
+      <DependentUpon>Add CustomerCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Check Defect ItemCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Check Defect ItemCN.Designer.cs">
+      <DependentUpon>Check Defect ItemCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Check Delivery OrderCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Check Delivery OrderCN.Designer.cs">
+      <DependentUpon>Check Delivery OrderCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\CheckOrderCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\CheckOrderCN.Designer.cs">
+      <DependentUpon>CheckOrderCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Create Delivery OrderCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Create Delivery OrderCN.Designer.cs">
+      <DependentUpon>Create Delivery OrderCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Create Defect ItemCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Create Defect ItemCN.Designer.cs">
+      <DependentUpon>Create Defect ItemCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Create StockCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Create StockCN.Designer.cs">
+      <DependentUpon>Create StockCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\CreateOrderCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\CreateOrderCN.Designer.cs">
+      <DependentUpon>CreateOrderCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Delivery Order DetailsCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Delivery Order DetailsCN.Designer.cs">
+      <DependentUpon>Delivery Order DetailsCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Deposit DetailCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Deposit DetailCN.Designer.cs">
+      <DependentUpon>Deposit DetailCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Edit StockCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Edit StockCN.Designer.cs">
+      <DependentUpon>Edit StockCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Payment DetailCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Payment DetailCN.Designer.cs">
+      <DependentUpon>Payment DetailCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Print DepositCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Print DepositCN.Designer.cs">
+      <DependentUpon>Print DepositCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Print PaymentCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Print PaymentCN.Designer.cs">
+      <DependentUpon>Print PaymentCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Print ReturnCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Print ReturnCN.Designer.cs">
+      <DependentUpon>Print ReturnCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Select Delivery ItemCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Select Delivery ItemCN.Designer.cs">
+      <DependentUpon>Select Delivery ItemCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\Stock QuantityCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\Stock QuantityCN.Designer.cs">
+      <DependentUpon>Stock QuantityCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chinese\銷售\UpdateOrderCN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chinese\銷售\UpdateOrderCN.Designer.cs">
+      <DependentUpon>UpdateOrderCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="defect_item.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lnventory\InventoryManagementSystemReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="lnventory\InventoryManagementSystemReceipt.Designer.cs">
+      <DependentUpon>InventoryManagementSystemReceipt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Check Defect Item.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Check Defect Item.Designer.cs">
+      <DependentUpon>Check Defect Item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Create Defect Item.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Create Defect Item.Designer.cs">
+      <DependentUpon>Create Defect Item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Create Stock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Create Stock.Designer.cs">
+      <DependentUpon>Create Stock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Edit Stock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Edit Stock.Designer.cs">
+      <DependentUpon>Edit Stock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Print Deposit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Print Deposit.Designer.cs">
+      <DependentUpon>Print Deposit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Print Payment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Print Payment.Designer.cs">
+      <DependentUpon>Print Payment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Print Return.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Print Return.Designer.cs">
+      <DependentUpon>Print Return.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Stock Quantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Stock Quantity.Designer.cs">
+      <DependentUpon>Stock Quantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delivery\frmHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delivery\frmHistory.Designer.cs">
+      <DependentUpon>frmHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delivery\frmMyTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delivery\frmMyTask.Designer.cs">
+      <DependentUpon>frmMyTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delivery\frmOrderDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delivery\frmOrderDetail.Designer.cs">
+      <DependentUpon>frmOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delivery\FrmScheduler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delivery\FrmScheduler.Designer.cs">
+      <DependentUpon>FrmScheduler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="better_limitedDataSet.Designer.cs">
+      <DependentUpon>better_limitedDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="lnventory\InventoryManagementSystem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="lnventory\InventoryManagementSystem.Designer.cs">
+      <DependentUpon>InventoryManagementSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="lnventory\InventoryManagementSystemPopUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="lnventory\InventoryManagementSystemPopUpForm.Designer.cs">
+      <DependentUpon>InventoryManagementSystemPopUpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\CheckOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\CheckOrder.Designer.cs">
+      <DependentUpon>CheckOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Add Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Add Customer.Designer.cs">
+      <DependentUpon>Add Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Check Delivery Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Check Delivery Order.Designer.cs">
+      <DependentUpon>Check Delivery Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Create Delivery Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Create Delivery Order.Designer.cs">
+      <DependentUpon>Create Delivery Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\CreateOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\CreateOrder.Designer.cs">
+      <DependentUpon>CreateOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="customer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Delivery Order Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Delivery Order Details.Designer.cs">
+      <DependentUpon>Delivery Order Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="deliverynote.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="deliveryorder.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="deliveryorderproduct.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Deposit Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Deposit Detail.Designer.cs">
+      <DependentUpon>Deposit Detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="deposit_receipt.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="electronic_purchase_order.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="empolyee.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="goods_received_note.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="goods_returned_note.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="installationrequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inventory_level.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MyDB.cs" />
+    <Compile Include="myTaskUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="myTaskUserControl.Designer.cs">
+      <DependentUpon>myTaskUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="payment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="payment_receipt.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="login\admin2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login\admin2.Designer.cs">
+      <DependentUpon>admin2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="login\users_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login\users_list.Designer.cs">
+      <DependentUpon>users_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="login\userdetail.cs" />
+    <Compile Include="login\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="login\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login\Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="product.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="purchase_order_detail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reorderingitem.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="replenishment_request.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Payment Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Payment Detail.Designer.cs">
+      <DependentUpon>Payment Detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Select Delivery Item.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Select Delivery Item.Designer.cs">
+      <DependentUpon>Select Delivery Item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\UpdateOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\UpdateOrder.Designer.cs">
+      <DependentUpon>UpdateOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="re_order_requests.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales.Designer.cs">
+      <DependentUpon>Sales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="supplier.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER.cs" />
+    <Compile Include="WorkerUserControlCN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkerUserControlCN.Designer.cs">
+      <DependentUpon>WorkerUserControlCN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerUserControl_2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkerUserControl_2.Designer.cs">
+      <DependentUpon>WorkerUserControl_2.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="chinese\庫存\InventoryManagementSystemPopUpFormCNN.resx">
+      <DependentUpon>InventoryManagementSystemPopUpFormCNN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\庫存\InventoryManagementSystemReceiptCN.resx">
+      <DependentUpon>InventoryManagementSystemReceiptCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\送貨\frmHistoryCN.resx">
+      <DependentUpon>frmHistoryCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\送貨\frmMyTaskCN.resx">
+      <DependentUpon>frmMyTaskCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\送貨\frmOrderDetailCN.resx">
+      <DependentUpon>frmOrderDetailCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\送貨\FrmSchedulerCN.resx">
+      <DependentUpon>FrmSchedulerCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\登錄\admin2CN.resx">
+      <DependentUpon>admin2CN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\登錄\Form2CN.resx">
+      <DependentUpon>Form2CN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\登錄\users_listCN.resx">
+      <DependentUpon>users_listCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\庫存\InventoryManagementSystemCN.resx">
+      <DependentUpon>InventoryManagementSystemCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\送貨\myTaskUserControlCN.resx">
+      <DependentUpon>myTaskUserControlCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Add CustomerCN.resx">
+      <DependentUpon>Add CustomerCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Check Defect ItemCN.resx">
+      <DependentUpon>Check Defect ItemCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Check Delivery OrderCN.resx">
+      <DependentUpon>Check Delivery OrderCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\CheckOrderCN.resx">
+      <DependentUpon>CheckOrderCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Create Defect ItemCN.resx">
+      <DependentUpon>Create Defect ItemCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Create Delivery OrderCN.resx">
+      <DependentUpon>Create Delivery OrderCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Create StockCN.resx">
+      <DependentUpon>Create StockCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\CreateOrderCN.resx">
+      <DependentUpon>CreateOrderCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\CreateOrderCN.zh-Hans-HK.resx">
+      <DependentUpon>CreateOrderCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Delivery Order DetailsCN.resx">
+      <DependentUpon>Delivery Order DetailsCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Deposit DetailCN.resx">
+      <DependentUpon>Deposit DetailCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Edit StockCN.resx">
+      <DependentUpon>Edit StockCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Payment DetailCN.resx">
+      <DependentUpon>Payment DetailCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Print DepositCN.resx">
+      <DependentUpon>Print DepositCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Print PaymentCN.resx">
+      <DependentUpon>Print PaymentCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Print ReturnCN.resx">
+      <DependentUpon>Print ReturnCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Select Delivery ItemCN.resx">
+      <DependentUpon>Select Delivery ItemCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\Stock QuantityCN.resx">
+      <DependentUpon>Stock QuantityCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chinese\銷售\UpdateOrderCN.resx">
+      <DependentUpon>UpdateOrderCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="lnventory\InventoryManagementSystemReceipt.resx">
+      <DependentUpon>InventoryManagementSystemReceipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Check Defect Item.resx">
+      <DependentUpon>Check Defect Item.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Create Defect Item.resx">
+      <DependentUpon>Create Defect Item.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Create Stock.resx">
+      <DependentUpon>Create Stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Edit Stock.resx">
+      <DependentUpon>Edit Stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Print Deposit.resx">
+      <DependentUpon>Print Deposit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Print Payment.resx">
+      <DependentUpon>Print Payment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Print Return.resx">
+      <DependentUpon>Print Return.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Stock Quantity.resx">
+      <DependentUpon>Stock Quantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delivery\frmHistory.resx">
+      <DependentUpon>frmHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delivery\frmMyTask.resx">
+      <DependentUpon>frmMyTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delivery\frmOrderDetail.resx">
+      <DependentUpon>frmOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delivery\FrmScheduler.resx">
+      <DependentUpon>FrmScheduler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="lnventory\InventoryManagementSystem.resx">
+      <DependentUpon>InventoryManagementSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="lnventory\InventoryManagementSystemPopUpForm.resx">
+      <DependentUpon>InventoryManagementSystemPopUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\CheckOrder.resx">
+      <DependentUpon>CheckOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Add Customer.resx">
+      <DependentUpon>Add Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Check Delivery Order.resx">
+      <DependentUpon>Check Delivery Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Create Delivery Order.resx">
+      <DependentUpon>Create Delivery Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\CreateOrder.resx">
+      <DependentUpon>CreateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\CreateOrder.zh-Hans-HK.resx">
+      <DependentUpon>CreateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Delivery Order Details.resx">
+      <DependentUpon>Delivery Order Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Deposit Detail.resx">
+      <DependentUpon>Deposit Detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="myTaskUserControl.resx">
+      <DependentUpon>myTaskUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="login\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="login\Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="login\admin2.resx">
+      <DependentUpon>admin2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Sales\Payment Detail.resx">
+      <DependentUpon>Payment Detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Select Delivery Item.resx">
+      <DependentUpon>Select Delivery Item.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\UpdateOrder.resx">
+      <DependentUpon>UpdateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales.resx">
+      <DependentUpon>Sales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="login\users_list.resx">
+      <DependentUpon>users_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerUserControlCN.resx">
+      <DependentUpon>WorkerUserControlCN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerUserControl_2.resx">
+      <DependentUpon>WorkerUserControl_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="better_limitedDataSet.xsc">
+      <DependentUpon>better_limitedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="better_limitedDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>better_limitedDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="better_limitedDataSet.xss">
+      <DependentUpon>better_limitedDataSet.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\70b95afee6134704837c80a1ed784d08 %281%29.png" />
+    <None Include="Resources\70b95afee6134704837c80a1ed784d08.png" />
+    <None Include="Resources\today-32.png" />
+    <None Include="Resources\clock-8-32.png" />
+    <None Include="Resources\x-mark-5-32.png" />
+    <None Include="Resources\package-2-32.png" />
+    <None Include="Resources\home-5-32.png" />
+    <None Include="Resources\error-4-32.png" />
+    <None Include="Resources\add-row-32.png" />
+    <None Include="Resources\addi-32.png" />
+    <None Include="Resources\x-mark-32.png" />
+    <None Include="Resources\user-5-325.png" />
+    <None Include="Resources\user-5-32.png" />
+    <None Include="Resources\noeye-32.png" />
+    <None Include="Resources\eye-32.png" />
+    <None Include="Resources\logo1.png" />
+    <None Include="Resources\bottom1.png" />
+    <None Include="Resources\a3978babd5bc1c2f0c335c7aeee79f331.png" />
+    <None Include="Resources\a3978babd5bc1c2f0c335c7aeee79f33.png" />
+    <None Include="Resources\bottom.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\download-icon-human+person+plus+user+icon-1320196276984981208_256.png" />
+    <None Include="Resources\user-244.png" />
+    <None Include="Resources\settings-25-32.png" />
+    <None Include="Resources\refresh-icon-white-1.jpg" />
+    <None Include="Resources\refresh-32.png" />
+    <None Include="Resources\purchase-order-32.png" />
+    <None Include="Resources\pngkey.com-refresh-icon-png-2048039.png" />
+    <None Include="Resources\delete-32.png" />
+    <None Include="Resources\available-updates-32 %281%291.png" />
+    <None Include="Resources\available-updates-32 %281%29.png" />
+    <None Include="Resources\add-32.png" />
+    <None Include="Resources\visa1.png" />
+    <None Include="Resources\visa.png" />
+    <None Include="Resources\master1.png" />
+    <None Include="Resources\master.png" />
+    <None Include="Resources\cash3.png" />
+    <None Include="Resources\cash2.png" />
+    <None Include="Resources\cash1.png" />
+    <None Include="Resources\cash.png" />
+    <None Include="Resources\cash.jpg" />
+    <None Include="Resources\AlipayHK1.png" />
+    <None Include="Resources\AlipayHK.png" />
+    <None Include="Resources\alipay1.png" />
+    <None Include="Resources\alipay.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

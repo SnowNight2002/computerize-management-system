@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d24efd7fc92e4f78aef1e3e0ec1ccd85" Name="Diagram1">
+        <EntityTypeShape EntityType="better_limitedModel.customer" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.deliverynote" Width="1.5" PointX="8.25" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.deliveryorder" Width="1.5" PointX="6" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.deliveryorderproduct" Width="1.5" PointX="11.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.deposit_receipt" Width="1.5" PointX="5.25" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.electronic_purchase_order" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.empolyee" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.goods_received_note" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.goods_returned_note" Width="1.5" PointX="3" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.installationrequest" Width="1.5" PointX="11.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.inventory_level" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.payment" Width="1.5" PointX="3" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.payment_receipt" Width="1.5" PointX="8.25" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.product" Width="1.5" PointX="9" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.purchase_order_detail" Width="1.5" PointX="8.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.re_order_requests" Width="1.5" PointX="3" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.reorderingitem" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.replenishment_request" Width="1.5" PointX="3" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="better_limitedModel.supplier" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <AssociationConnector Association="better_limitedModel.deliveryorder_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.deposit_receipt_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.deliverynote_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.deliveryorder_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.deliveryorderproduct_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.installationrequest_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.deliveryorderproduct_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.deposit_receipt_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.deposit_receipt_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.electronic_purchase_order_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.goods_received_note_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.purchase_order_detail_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.goods_returned_note_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.installationrequest_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.inventory_level_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.payment_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.re_order_requests_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.replenishment_request_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.goods_received_note_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.payment_receipt_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.payment_receipt_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.purchase_order_detail_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="better_limitedModel.reorderingitem_ibfk_1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

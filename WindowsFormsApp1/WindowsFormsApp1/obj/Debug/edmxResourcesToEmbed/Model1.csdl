@@ -1,0 +1,747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="better_limitedModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="Customerid" />
+    </Key>
+    <Property Name="Customerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="District" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="deliveryorder" Relationship="Self.deliveryorder_ibfk_2" FromRole="customer" ToRole="deliveryorder" />
+    <NavigationProperty Name="deposit_receipt" Relationship="Self.deposit_receipt_ibfk_4" FromRole="customer" ToRole="deposit_receipt" />
+  </EntityType>
+  <EntityType Name="deliverynote">
+    <Key>
+      <PropertyRef Name="deliverynoteid" />
+    </Key>
+    <Property Name="deliverynoteid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="deliveryid" Type="Int32" Nullable="false" />
+    <Property Name="deliverysignature" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="deliveryorder" Relationship="Self.deliverynote_ibfk_1" FromRole="deliverynote" ToRole="deliveryorder" />
+  </EntityType>
+  <EntityType Name="deliveryorder">
+    <Key>
+      <PropertyRef Name="deliveryid" />
+    </Key>
+    <Property Name="deliveryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="docreatedate" Type="DateTime" />
+    <Property Name="deliverystatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="expectdeliverydate" Type="DateTime" />
+    <Property Name="timeslot" Type="Int32" />
+    <Property Name="deliverycompleteDate" Type="DateTime" />
+    <Property Name="EmpID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Customerid" Type="Int32" Nullable="false" />
+    <Property Name="InstallationNeed" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="customer" Relationship="Self.deliveryorder_ibfk_2" FromRole="deliveryorder" ToRole="customer" />
+    <NavigationProperty Name="deliverynote" Relationship="Self.deliverynote_ibfk_1" FromRole="deliveryorder" ToRole="deliverynote" />
+    <NavigationProperty Name="empolyee" Relationship="Self.deliveryorder_ibfk_1" FromRole="deliveryorder" ToRole="empolyee" />
+    <NavigationProperty Name="deliveryorderproduct" Relationship="Self.deliveryorderproduct_ibfk_1" FromRole="deliveryorder" ToRole="deliveryorderproduct" />
+    <NavigationProperty Name="installationrequest" Relationship="Self.installationrequest_ibfk_1" FromRole="deliveryorder" ToRole="installationrequest" />
+  </EntityType>
+  <EntityType Name="deliveryorderproduct">
+    <Key>
+      <PropertyRef Name="dopid" />
+    </Key>
+    <Property Name="dopid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="buyqty" Type="Int32" Nullable="false" />
+    <Property Name="deliveryid" Type="Int32" Nullable="false" />
+    <Property Name="productid" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Single" />
+    <NavigationProperty Name="deliveryorder" Relationship="Self.deliveryorderproduct_ibfk_1" FromRole="deliveryorderproduct" ToRole="deliveryorder" />
+    <NavigationProperty Name="product" Relationship="better_limitedModel.deliveryorderproduct_ibfk_2" FromRole="deliveryorderproduct" ToRole="product" />
+  </EntityType>
+  <EntityType Name="deposit_receipt">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+      <PropertyRef Name="itemsID" />
+    </Key>
+    <Property Name="Order_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="itemsID" Type="Int32" Nullable="false" />
+    <Property Name="Items_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="ItemPrice" Type="Double" Nullable="false" />
+    <Property Name="TotalPrice" Type="Double" />
+    <Property Name="Deposit_Amounts" Type="Double" />
+    <Property Name="outstanding_amounts" Type="Double" />
+    <Property Name="Created_Date" Type="DateTime" />
+    <Property Name="customerID" Type="Int32" />
+    <NavigationProperty Name="customer" Relationship="Self.deposit_receipt_ibfk_4" FromRole="deposit_receipt" ToRole="customer" />
+    <NavigationProperty Name="payment" Relationship="Self.deposit_receipt_ibfk_3" FromRole="deposit_receipt" ToRole="payment" />
+    <NavigationProperty Name="product" Relationship="better_limitedModel.deposit_receipt_ibfk_2" FromRole="deposit_receipt" ToRole="product" />
+  </EntityType>
+  <EntityType Name="electronic_purchase_order">
+    <Key>
+      <PropertyRef Name="EPOrderID" />
+    </Key>
+    <Property Name="EPOrderID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TotalPrice" Type="Double" />
+    <Property Name="EmpID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Created_Date" Type="DateTime" />
+    <NavigationProperty Name="empolyee" Relationship="Self.electronic_purchase_order_ibfk_1" FromRole="electronic_purchase_order" ToRole="empolyee" />
+    <NavigationProperty Name="goods_received_note" Relationship="Self.goods_received_note_ibfk_1" FromRole="electronic_purchase_order" ToRole="goods_received_note" />
+    <NavigationProperty Name="purchase_order_detail" Relationship="Self.purchase_order_detail_ibfk_2" FromRole="electronic_purchase_order" ToRole="purchase_order_detail" />
+  </EntityType>
+  <EntityType Name="empolyee">
+    <Key>
+      <PropertyRef Name="EmpID" />
+    </Key>
+    <Property Name="EmpID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmpName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Empdepartment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="account_number" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="security_question_answer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="deliveryorder" Relationship="Self.deliveryorder_ibfk_1" FromRole="empolyee" ToRole="deliveryorder" />
+    <NavigationProperty Name="electronic_purchase_order" Relationship="Self.electronic_purchase_order_ibfk_1" FromRole="empolyee" ToRole="electronic_purchase_order" />
+    <NavigationProperty Name="goods_returned_note" Relationship="Self.goods_returned_note_ibfk_1" FromRole="empolyee" ToRole="goods_returned_note" />
+    <NavigationProperty Name="installationrequest" Relationship="Self.installationrequest_ibfk_2" FromRole="empolyee" ToRole="installationrequest" />
+    <NavigationProperty Name="inventory_level" Relationship="Self.inventory_level_ibfk_1" FromRole="empolyee" ToRole="inventory_level" />
+    <NavigationProperty Name="payment" Relationship="Self.payment_ibfk_1" FromRole="empolyee" ToRole="payment" />
+    <NavigationProperty Name="re_order_requests" Relationship="Self.re_order_requests_ibfk_1" FromRole="empolyee" ToRole="re_order_requests" />
+    <NavigationProperty Name="replenishment_request" Relationship="Self.replenishment_request_ibfk_1" FromRole="empolyee" ToRole="replenishment_request" />
+    <NavigationProperty Name="defect_item" Relationship="better_limitedModel.defect_item_ibfk_1" FromRole="empolyee" ToRole="defect_item" />
+    <NavigationProperty Name="products" Relationship="better_limitedModel.product_ibfk_1" FromRole="empolyee" ToRole="product" />
+  </EntityType>
+  <EntityType Name="goods_received_note">
+    <Key>
+      <PropertyRef Name="Goods_Received_Note_Number" />
+    </Key>
+    <Property Name="Goods_Received_Note_Number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Receipt_Date" Type="DateTime" />
+    <Property Name="ItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemBrand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemQuantity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemPrice" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Amounts" Type="Double" />
+    <Property Name="Buyer_Signature" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="EPOrderID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SupplierName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="electronic_purchase_order" Relationship="Self.goods_received_note_ibfk_1" FromRole="goods_received_note" ToRole="electronic_purchase_order" />
+    <NavigationProperty Name="supplier" Relationship="Self.goods_received_note_ibfk_2" FromRole="goods_received_note" ToRole="supplier" />
+  </EntityType>
+  <EntityType Name="goods_returned_note">
+    <Key>
+      <PropertyRef Name="Goods_Returned_Note_Number" />
+    </Key>
+    <Property Name="Goods_Returned_Note_Number" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Company_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="EmpID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Returner" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Return_Date" Type="DateTime" />
+    <Property Name="ItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Amounts" Type="Double" />
+    <Property Name="item_Return_Reason" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Amount_of_Money_Returned" Type="Double" />
+    <NavigationProperty Name="empolyee" Relationship="Self.goods_returned_note_ibfk_1" FromRole="goods_returned_note" ToRole="empolyee" />
+  </EntityType>
+  <EntityType Name="installationrequest">
+    <Key>
+      <PropertyRef Name="installRequestid" />
+    </Key>
+    <Property Name="installRequestid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="installEmpID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="installDate" Type="DateTime" />
+    <Property Name="installComDate" Type="DateTime" />
+    <Property Name="installTimeslot" Type="Int32" />
+    <Property Name="installStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="installSignImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="deliveryid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="deliveryorder" Relationship="Self.installationrequest_ibfk_1" FromRole="installationrequest" ToRole="deliveryorder" />
+    <NavigationProperty Name="empolyee" Relationship="Self.installationrequest_ibfk_2" FromRole="installationrequest" ToRole="empolyee" />
+  </EntityType>
+  <EntityType Name="inventory_level">
+    <Key>
+      <PropertyRef Name="StockID" />
+    </Key>
+    <Property Name="StockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StockName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="StockType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="StockBrand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="StockStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="StockQuantity" Type="Int16" />
+    <Property Name="StockMaxNumber" Type="Int16" />
+    <Property Name="EmpID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RefillLevel" Type="Int32" />
+    <NavigationProperty Name="empolyee" Relationship="Self.inventory_level_ibfk_1" FromRole="inventory_level" ToRole="empolyee" />
+  </EntityType>
+  <EntityType Name="payment">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+    </Key>
+    <Property Name="Order_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Payment1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Created_Date" Type="DateTime" />
+    <Property Name="EmpID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentMethod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Region" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TotalPrice" Type="Double" />
+    <NavigationProperty Name="deposit_receipt" Relationship="Self.deposit_receipt_ibfk_3" FromRole="payment" ToRole="deposit_receipt" />
+    <NavigationProperty Name="empolyee" Relationship="Self.payment_ibfk_1" FromRole="payment" ToRole="empolyee" />
+    <NavigationProperty Name="payment_receipt" Relationship="Self.payment_receipt_ibfk_3" FromRole="payment" ToRole="payment_receipt" />
+  </EntityType>
+  <EntityType Name="payment_receipt">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+      <PropertyRef Name="itemsID" />
+    </Key>
+    <Property Name="Order_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="itemsID" Type="Int32" Nullable="false" />
+    <Property Name="Items_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Item_Price" Type="Double" />
+    <Property Name="Payment_amounts" Type="Double" />
+    <Property Name="Created_Date" Type="DateTime" />
+    <NavigationProperty Name="payment" Relationship="Self.payment_receipt_ibfk_3" FromRole="payment_receipt" ToRole="payment" />
+    <NavigationProperty Name="product" Relationship="better_limitedModel.payment_receipt_ibfk_2" FromRole="payment_receipt" ToRole="product" />
+  </EntityType>
+  <EntityType Name="purchase_order_detail">
+    <Key>
+      <PropertyRef Name="EPOrderID" />
+    </Key>
+    <Property Name="EPOrderID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemBrand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemQuantity" Type="Int16" />
+    <Property Name="ItemPrice" Type="Double" />
+    <Property Name="Amounts" Type="Double" />
+    <Property Name="Delivery_Deadline" Type="DateTime" />
+    <NavigationProperty Name="electronic_purchase_order" Relationship="Self.purchase_order_detail_ibfk_2" FromRole="purchase_order_detail" ToRole="electronic_purchase_order" />
+    <NavigationProperty Name="supplier1" Relationship="Self.purchase_order_detail_ibfk_1" FromRole="purchase_order_detail" ToRole="supplier" />
+  </EntityType>
+  <EntityType Name="re_order_requests">
+    <Key>
+      <PropertyRef Name="ReOrderID" />
+    </Key>
+    <Property Name="ReOrderID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemBrand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemQuantity" Type="Int16" />
+    <Property Name="EmpID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Created_Date" Type="DateTime" />
+    <Property Name="Delivery_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Amounts" Type="Double" />
+    <NavigationProperty Name="empolyee" Relationship="Self.re_order_requests_ibfk_1" FromRole="re_order_requests" ToRole="empolyee" />
+  </EntityType>
+  <EntityType Name="reorderingitem">
+    <Key>
+      <PropertyRef Name="ReOrderID" />
+    </Key>
+    <Property Name="ReOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemBrand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemQuantity" Type="Int16" />
+    <Property Name="ItemPrice" Type="Double" />
+    <Property Name="Amounts" Type="Double" />
+    <Property Name="ReceiveDate" Type="DateTime" />
+    <NavigationProperty Name="supplier1" Relationship="Self.reorderingitem_ibfk_1" FromRole="reorderingitem" ToRole="supplier" />
+  </EntityType>
+  <EntityType Name="replenishment_request">
+    <Key>
+      <PropertyRef Name="ReplenishmentID" />
+    </Key>
+    <Property Name="ReplenishmentID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemBrand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ItemQuantity" Type="Int16" />
+    <Property Name="Store_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Created_Date" Type="DateTime" />
+    <Property Name="Delivery_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="EmpID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="empolyee" Relationship="Self.replenishment_request_ibfk_1" FromRole="replenishment_request" ToRole="empolyee" />
+  </EntityType>
+  <EntityType Name="supplier">
+    <Key>
+      <PropertyRef Name="SupplierName" />
+    </Key>
+    <Property Name="SupplierName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SupplierPhoneNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SupplierEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SupplierAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SupplierOther" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="goods_received_note" Relationship="Self.goods_received_note_ibfk_2" FromRole="supplier" ToRole="goods_received_note" />
+    <NavigationProperty Name="purchase_order_detail" Relationship="Self.purchase_order_detail_ibfk_1" FromRole="supplier" ToRole="purchase_order_detail" />
+    <NavigationProperty Name="reorderingitem" Relationship="Self.reorderingitem_ibfk_1" FromRole="supplier" ToRole="reorderingitem" />
+  </EntityType>
+  <Association Name="deliveryorder_ibfk_2">
+    <End Role="customer" Type="Self.customer" Multiplicity="1" />
+    <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="Customerid" />
+      </Principal>
+      <Dependent Role="deliveryorder">
+        <PropertyRef Name="Customerid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="deposit_receipt_ibfk_4">
+    <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+    <End Role="deposit_receipt" Type="Self.deposit_receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="Customerid" />
+      </Principal>
+      <Dependent Role="deposit_receipt">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="deliverynote_ibfk_1">
+    <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="deliverynote" Type="Self.deliverynote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="deliveryorder">
+        <PropertyRef Name="deliveryid" />
+      </Principal>
+      <Dependent Role="deliverynote">
+        <PropertyRef Name="deliveryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="deliveryorder_ibfk_1">
+    <End Role="empolyee" Type="Self.empolyee" Multiplicity="0..1" />
+    <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empolyee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="deliveryorder">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="deliveryorderproduct_ibfk_1">
+    <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="deliveryorderproduct" Type="Self.deliveryorderproduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="deliveryorder">
+        <PropertyRef Name="deliveryid" />
+      </Principal>
+      <Dependent Role="deliveryorderproduct">
+        <PropertyRef Name="deliveryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="installationrequest_ibfk_1">
+    <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="1" />
+    <End Role="installationrequest" Type="Self.installationrequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="deliveryorder">
+        <PropertyRef Name="deliveryid" />
+      </Principal>
+      <Dependent Role="installationrequest">
+        <PropertyRef Name="deliveryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="deposit_receipt_ibfk_3">
+    <End Role="payment" Type="Self.payment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="deposit_receipt" Type="Self.deposit_receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment">
+        <PropertyRef Name="Order_ID" />
+      </Principal>
+      <Dependent Role="deposit_receipt">
+        <PropertyRef Name="Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="electronic_purchase_order_ibfk_1">
+    <End Role="empolyee" Type="Self.empolyee" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="electronic_purchase_order" Type="Self.electronic_purchase_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empolyee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="electronic_purchase_order">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="goods_received_note_ibfk_1">
+    <End Role="electronic_purchase_order" Type="Self.electronic_purchase_order" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="goods_received_note" Type="Self.goods_received_note" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="electronic_purchase_order">
+        <PropertyRef Name="EPOrderID" />
+      </Principal>
+      <Dependent Role="goods_received_note">
+        <PropertyRef Name="EPOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="purchase_order_detail_ibfk_2">
+    <End Role="electronic_purchase_order" Type="Self.electronic_purchase_order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="purchase_order_detail" Type="Self.purchase_order_detail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="electronic_purchase_order">
+        <PropertyRef Name="EPOrderID" />
+      </Principal>
+      <Dependent Role="purchase_order_detail">
+        <PropertyRef Name="EPOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="goods_returned_note_ibfk_1">
+    <End Role="empolyee" Type="Self.empolyee" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="goods_returned_note" Type="Self.goods_returned_note" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empolyee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="goods_returned_note">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="installationrequest_ibfk_2">
+    <End Role="empolyee" Type="Self.empolyee" Multiplicity="0..1" />
+    <End Role="installationrequest" Type="Self.installationrequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empolyee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="installationrequest">
+        <PropertyRef Name="installEmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="inventory_level_ibfk_1">
+    <End Role="empolyee" Type="Self.empolyee" Multiplicity="0..1" />
+    <End Role="inventory_level" Type="Self.inventory_level" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empolyee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="inventory_level">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="payment_ibfk_1">
+    <End Role="empolyee" Type="Self.empolyee" Multiplicity="0..1" />
+    <End Role="payment" Type="Self.payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empolyee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="payment">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="re_order_requests_ibfk_1">
+    <End Role="empolyee" Type="Self.empolyee" Multiplicity="0..1" />
+    <End Role="re_order_requests" Type="Self.re_order_requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empolyee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="re_order_requests">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="replenishment_request_ibfk_1">
+    <End Role="empolyee" Type="Self.empolyee" Multiplicity="0..1" />
+    <End Role="replenishment_request" Type="Self.replenishment_request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empolyee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="replenishment_request">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="goods_received_note_ibfk_2">
+    <End Role="supplier" Type="Self.supplier" Multiplicity="0..1" />
+    <End Role="goods_received_note" Type="Self.goods_received_note" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier">
+        <PropertyRef Name="SupplierName" />
+      </Principal>
+      <Dependent Role="goods_received_note">
+        <PropertyRef Name="SupplierName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="payment_receipt_ibfk_3">
+    <End Role="payment" Type="Self.payment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="payment_receipt" Type="Self.payment_receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment">
+        <PropertyRef Name="Order_ID" />
+      </Principal>
+      <Dependent Role="payment_receipt">
+        <PropertyRef Name="Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="purchase_order_detail_ibfk_1">
+    <End Role="supplier" Type="Self.supplier" Multiplicity="0..1" />
+    <End Role="purchase_order_detail" Type="Self.purchase_order_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier">
+        <PropertyRef Name="SupplierName" />
+      </Principal>
+      <Dependent Role="purchase_order_detail">
+        <PropertyRef Name="Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="reorderingitem_ibfk_1">
+    <End Role="supplier" Type="Self.supplier" Multiplicity="0..1" />
+    <End Role="reorderingitem" Type="Self.reorderingitem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier">
+        <PropertyRef Name="SupplierName" />
+      </Principal>
+      <Dependent Role="reorderingitem">
+        <PropertyRef Name="Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="better_limitedEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="customer" EntityType="Self.customer" />
+    <EntitySet Name="deliverynote" EntityType="Self.deliverynote" />
+    <EntitySet Name="deliveryorder" EntityType="Self.deliveryorder" />
+    <EntitySet Name="deliveryorderproduct" EntityType="Self.deliveryorderproduct" />
+    <EntitySet Name="deposit_receipt" EntityType="Self.deposit_receipt" />
+    <EntitySet Name="electronic_purchase_order" EntityType="Self.electronic_purchase_order" />
+    <EntitySet Name="empolyee" EntityType="Self.empolyee" />
+    <EntitySet Name="goods_received_note" EntityType="Self.goods_received_note" />
+    <EntitySet Name="goods_returned_note" EntityType="Self.goods_returned_note" />
+    <EntitySet Name="installationrequest" EntityType="Self.installationrequest" />
+    <EntitySet Name="inventory_level" EntityType="Self.inventory_level" />
+    <EntitySet Name="payment" EntityType="Self.payment" />
+    <EntitySet Name="payment_receipt" EntityType="Self.payment_receipt" />
+    <EntitySet Name="purchase_order_detail" EntityType="Self.purchase_order_detail" />
+    <EntitySet Name="re_order_requests" EntityType="Self.re_order_requests" />
+    <EntitySet Name="reorderingitem" EntityType="Self.reorderingitem" />
+    <EntitySet Name="replenishment_request" EntityType="Self.replenishment_request" />
+    <EntitySet Name="supplier" EntityType="Self.supplier" />
+    <AssociationSet Name="deliveryorder_ibfk_2" Association="Self.deliveryorder_ibfk_2">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="deliveryorder" EntitySet="deliveryorder" />
+    </AssociationSet>
+    <AssociationSet Name="deposit_receipt_ibfk_4" Association="Self.deposit_receipt_ibfk_4">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="deposit_receipt" EntitySet="deposit_receipt" />
+    </AssociationSet>
+    <AssociationSet Name="deliverynote_ibfk_1" Association="Self.deliverynote_ibfk_1">
+      <End Role="deliveryorder" EntitySet="deliveryorder" />
+      <End Role="deliverynote" EntitySet="deliverynote" />
+    </AssociationSet>
+    <AssociationSet Name="deliveryorder_ibfk_1" Association="Self.deliveryorder_ibfk_1">
+      <End Role="empolyee" EntitySet="empolyee" />
+      <End Role="deliveryorder" EntitySet="deliveryorder" />
+    </AssociationSet>
+    <AssociationSet Name="deliveryorderproduct_ibfk_1" Association="Self.deliveryorderproduct_ibfk_1">
+      <End Role="deliveryorder" EntitySet="deliveryorder" />
+      <End Role="deliveryorderproduct" EntitySet="deliveryorderproduct" />
+    </AssociationSet>
+    <AssociationSet Name="installationrequest_ibfk_1" Association="Self.installationrequest_ibfk_1">
+      <End Role="deliveryorder" EntitySet="deliveryorder" />
+      <End Role="installationrequest" EntitySet="installationrequest" />
+    </AssociationSet>
+    <AssociationSet Name="deposit_receipt_ibfk_3" Association="Self.deposit_receipt_ibfk_3">
+      <End Role="payment" EntitySet="payment" />
+      <End Role="deposit_receipt" EntitySet="deposit_receipt" />
+    </AssociationSet>
+    <AssociationSet Name="electronic_purchase_order_ibfk_1" Association="Self.electronic_purchase_order_ibfk_1">
+      <End Role="empolyee" EntitySet="empolyee" />
+      <End Role="electronic_purchase_order" EntitySet="electronic_purchase_order" />
+    </AssociationSet>
+    <AssociationSet Name="goods_received_note_ibfk_1" Association="Self.goods_received_note_ibfk_1">
+      <End Role="electronic_purchase_order" EntitySet="electronic_purchase_order" />
+      <End Role="goods_received_note" EntitySet="goods_received_note" />
+    </AssociationSet>
+    <AssociationSet Name="purchase_order_detail_ibfk_2" Association="Self.purchase_order_detail_ibfk_2">
+      <End Role="electronic_purchase_order" EntitySet="electronic_purchase_order" />
+      <End Role="purchase_order_detail" EntitySet="purchase_order_detail" />
+    </AssociationSet>
+    <AssociationSet Name="goods_returned_note_ibfk_1" Association="Self.goods_returned_note_ibfk_1">
+      <End Role="empolyee" EntitySet="empolyee" />
+      <End Role="goods_returned_note" EntitySet="goods_returned_note" />
+    </AssociationSet>
+    <AssociationSet Name="installationrequest_ibfk_2" Association="Self.installationrequest_ibfk_2">
+      <End Role="empolyee" EntitySet="empolyee" />
+      <End Role="installationrequest" EntitySet="installationrequest" />
+    </AssociationSet>
+    <AssociationSet Name="inventory_level_ibfk_1" Association="Self.inventory_level_ibfk_1">
+      <End Role="empolyee" EntitySet="empolyee" />
+      <End Role="inventory_level" EntitySet="inventory_level" />
+    </AssociationSet>
+    <AssociationSet Name="payment_ibfk_1" Association="Self.payment_ibfk_1">
+      <End Role="empolyee" EntitySet="empolyee" />
+      <End Role="payment" EntitySet="payment" />
+    </AssociationSet>
+    <AssociationSet Name="re_order_requests_ibfk_1" Association="Self.re_order_requests_ibfk_1">
+      <End Role="empolyee" EntitySet="empolyee" />
+      <End Role="re_order_requests" EntitySet="re_order_requests" />
+    </AssociationSet>
+    <AssociationSet Name="replenishment_request_ibfk_1" Association="Self.replenishment_request_ibfk_1">
+      <End Role="empolyee" EntitySet="empolyee" />
+      <End Role="replenishment_request" EntitySet="replenishment_request" />
+    </AssociationSet>
+    <AssociationSet Name="goods_received_note_ibfk_2" Association="Self.goods_received_note_ibfk_2">
+      <End Role="supplier" EntitySet="supplier" />
+      <End Role="goods_received_note" EntitySet="goods_received_note" />
+    </AssociationSet>
+    <AssociationSet Name="payment_receipt_ibfk_3" Association="Self.payment_receipt_ibfk_3">
+      <End Role="payment" EntitySet="payment" />
+      <End Role="payment_receipt" EntitySet="payment_receipt" />
+    </AssociationSet>
+    <AssociationSet Name="purchase_order_detail_ibfk_1" Association="Self.purchase_order_detail_ibfk_1">
+      <End Role="supplier" EntitySet="supplier" />
+      <End Role="purchase_order_detail" EntitySet="purchase_order_detail" />
+    </AssociationSet>
+    <AssociationSet Name="reorderingitem_ibfk_1" Association="Self.reorderingitem_ibfk_1">
+      <End Role="supplier" EntitySet="supplier" />
+      <End Role="reorderingitem" EntitySet="reorderingitem" />
+    </AssociationSet>
+    <EntitySet Name="defect_items" EntityType="better_limitedModel.defect_item" />
+    <AssociationSet Name="defect_item_ibfk_1" Association="better_limitedModel.defect_item_ibfk_1">
+      <End Role="empolyee" EntitySet="empolyee" />
+      <End Role="defect_item" EntitySet="defect_items" />
+    </AssociationSet>
+    <EntitySet Name="products" EntityType="better_limitedModel.product" />
+    <AssociationSet Name="deliveryorderproduct_ibfk_2" Association="better_limitedModel.deliveryorderproduct_ibfk_2">
+      <End Role="product" EntitySet="products" />
+      <End Role="deliveryorderproduct" EntitySet="deliveryorderproduct" />
+    </AssociationSet>
+    <AssociationSet Name="deposit_receipt_ibfk_2" Association="better_limitedModel.deposit_receipt_ibfk_2">
+      <End Role="product" EntitySet="products" />
+      <End Role="deposit_receipt" EntitySet="deposit_receipt" />
+    </AssociationSet>
+    <AssociationSet Name="product_ibfk_1" Association="better_limitedModel.product_ibfk_1">
+      <End Role="empolyee" EntitySet="empolyee" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="payment_receipt_ibfk_2" Association="better_limitedModel.payment_receipt_ibfk_2">
+      <End Role="product" EntitySet="products" />
+      <End Role="payment_receipt" EntitySet="payment_receipt" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="defect_item">
+    <Key>
+      <PropertyRef Name="defectID" />
+    </Key>
+    <Property Name="defectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itemName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="itemQuantity" Type="Int32" Nullable="false" />
+    <Property Name="returnPrice" Type="Double" Nullable="false" />
+    <Property Name="employeeID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="empolyee" Relationship="better_limitedModel.defect_item_ibfk_1" FromRole="defect_item" ToRole="empolyee" />
+  </EntityType>
+  <Association Name="defect_item_ibfk_1">
+    <End Type="better_limitedModel.empolyee" Role="empolyee" Multiplicity="1" />
+    <End Type="better_limitedModel.defect_item" Role="defect_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empolyee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="defect_item">
+        <PropertyRef Name="employeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="productid" />
+    </Key>
+    <Property Name="productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="productType" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="productbrand" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="productweight" Type="Single" Nullable="false" />
+    <Property Name="productUnitQty" Type="Int32" Nullable="false" />
+    <Property Name="productUnitprice" Type="Double" Nullable="false" />
+    <Property Name="StockMaxNumber" Type="Int32" Nullable="false" />
+    <Property Name="EmpID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="deliveryorderproducts" Relationship="better_limitedModel.deliveryorderproduct_ibfk_2" FromRole="product" ToRole="deliveryorderproduct" />
+    <NavigationProperty Name="deposit_receipt" Relationship="better_limitedModel.deposit_receipt_ibfk_2" FromRole="product" ToRole="deposit_receipt" />
+    <NavigationProperty Name="empolyee" Relationship="better_limitedModel.product_ibfk_1" FromRole="product" ToRole="empolyee" />
+    <NavigationProperty Name="payment_receipt" Relationship="better_limitedModel.payment_receipt_ibfk_2" FromRole="product" ToRole="payment_receipt" />
+  </EntityType>
+  <Association Name="deliveryorderproduct_ibfk_2">
+    <End Type="better_limitedModel.product" Role="product" Multiplicity="1" />
+    <End Type="better_limitedModel.deliveryorderproduct" Role="deliveryorderproduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="productid" />
+      </Principal>
+      <Dependent Role="deliveryorderproduct">
+        <PropertyRef Name="productid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="deposit_receipt_ibfk_2">
+    <End Type="better_limitedModel.product" Role="product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="better_limitedModel.deposit_receipt" Role="deposit_receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="productid" />
+      </Principal>
+      <Dependent Role="deposit_receipt">
+        <PropertyRef Name="itemsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="product_ibfk_1">
+    <End Type="better_limitedModel.empolyee" Role="empolyee" Multiplicity="1" />
+    <End Type="better_limitedModel.product" Role="product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empolyee">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="EmpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="payment_receipt_ibfk_2">
+    <End Type="better_limitedModel.product" Role="product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="better_limitedModel.payment_receipt" Role="payment_receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="productid" />
+      </Principal>
+      <Dependent Role="payment_receipt">
+        <PropertyRef Name="itemsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
